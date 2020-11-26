@@ -36,7 +36,7 @@ class EmployeesController extends Controller
         {
             return response()->json([
                 'status'    => false,
-                'message'   => 'Employees Not Found!'
+                'message'   => 'Employee Not Found!'
             ], 404);
         }
     }
@@ -55,7 +55,6 @@ class EmployeesController extends Controller
             'dateofbirth'           => 'required',
             'marriage_status'       => 'required|string',
             'number_of_children'    => 'string',
-            'last_education'        => 'required|string',
             'province'              => 'required|string',
             'city'                  => 'required|string',
             'districts'             => 'required|string',
@@ -80,7 +79,6 @@ class EmployeesController extends Controller
         $employees->dateofbirth           = $request->dateofbirth;
         $employees->marriage_status       = $request->marriage_status;
         $employees->number_of_children    = $request->number_of_children;
-        $employees->last_education        = $request->last_education;
         $employees->province              = $request->province;
         $employees->city                  = $request->city;
         $employees->districts             = $request->districts;
@@ -97,7 +95,7 @@ class EmployeesController extends Controller
         {
             return response()->json([
                 'status'    => true,
-                'message'   =>'Add Employees Success!',
+                'message'   =>'Add Employee Success!',
                 'data'      => $employees
             ], 201);
         }
@@ -106,7 +104,7 @@ class EmployeesController extends Controller
         {
             return response()->json([
                 'status'    => false,
-                'message'   =>'Add Employees Failed!',
+                'message'   =>'Add Employee Failed!',
             ], 400);
         }
     }
@@ -128,7 +126,6 @@ class EmployeesController extends Controller
             $employees->dateofbirth               = $request->dateofbirth             ? $request->dateofbirth             : $employees->dateofbirth;
             $employees->marriage_status           = $request->marriage_status         ? $request->marriage_status         : $employees->marriage_status;
             $employees->number_of_children        = $request->number_of_children      ? $request->number_of_children      : $employees->number_of_children;
-            $employees->last_education            = $request->last_education          ? $request->last_education          : $employees->last_education;
             $employees->province                  = $request->province                ? $request->province                : $employees->province;
             $employees->city                      = $request->city                    ? $request->city                    : $employees->city;
             $employees->districts                 = $request->districts               ? $request->districts               : $employees->districts;
@@ -143,7 +140,7 @@ class EmployeesController extends Controller
             
             return response()->json([
                 'status'    => true,
-                'massage'   => 'Update Employees Success!',
+                'massage'   => 'Update Employee Success!',
                 'data'      => $employees
             ], 200);
         }
@@ -151,28 +148,7 @@ class EmployeesController extends Controller
         {
             return response()->json([
                 'status'    => false,
-                'massage'   => 'Update Employees Failed'
-            ], 400);
-        }
-    }
-
-    public function delete($id)
-    {
-        $employees    = Employees::where('id', $id)->first();
-
-        if($employees)
-        {
-            $employees->delete();
-            return response()->json([
-                'status'    => true,
-                'massage'   => 'Delete Employees ' .$id. ' Success'
-            ], 200);
-        }
-        else
-        {
-            return response()->json([
-                'status'    => false,
-                'massage'   => 'Delete Employees ' .$id. ' Failed'
+                'massage'   => 'Update Employee Failed'
             ], 400);
         }
     }

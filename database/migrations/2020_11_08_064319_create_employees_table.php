@@ -21,7 +21,6 @@ class CreateEmployeesTable extends Migration
             $table->date('dateofbirth');
             $table->enum('marriage_status', ['Belum Menikah', 'Menikah', 'Janda', 'Duda']);
             $table->integer('number_of_children');
-            $table->enum('last_education', ['SD', 'SMP', 'SMA', 'D3', 'S1', 'S2', 'S3']);
             $table->string('province');
             $table->string('city');
             $table->string('districts');
