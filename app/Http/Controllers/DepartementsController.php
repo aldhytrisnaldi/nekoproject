@@ -11,6 +11,7 @@ class DepartementsController extends Controller
     {
         $this->middleware('cors');
         $this->middleware('auth');
+        $this->middleware('role:admin');
     }
 
     public function get()
@@ -21,7 +22,7 @@ class DepartementsController extends Controller
             'data'      => $data
         ]);
     }
-    
+
     public function add(Request $request)
     {
         $this->validate($request, [
@@ -52,12 +53,12 @@ class DepartementsController extends Controller
     public function update($id, Request $request)
     {
         $departement    = Departements::where('id', $id)->first();
-        
+
         if($departement)
         {
             $departement->departement_name  = $request->departement_name    ?   $request->departement_name  : $departement->departement_name;
             $departement->save();
-            
+
             return response()->json([
                 'status'    => true,
                 'massage'   => 'Update Departement Success!',
