@@ -28,13 +28,10 @@ class CreateEmployeesTable extends Migration
             $table->longtext('address');
             $table->string('phone')->unique;
             $table->string('email')->unique;
-            $table->unsignedInteger('departement_id');
-            $table->unsignedInteger('division_id');
-            $table->unsignedInteger('position_id');
+            $table->unsignedInteger('id_departement');
+            $table->unsignedInteger('id_division');
+            $table->unsignedInteger('id_position');
             $table->timestamps();
-            $table->foreign('departement_id')->references('id')->on('departements')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreign('division_id')->references('id')->on('divisions')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreign('position_id')->references('id')->on('positions')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

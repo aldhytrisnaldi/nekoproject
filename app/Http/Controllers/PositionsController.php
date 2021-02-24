@@ -21,15 +21,17 @@ class PositionsController extends Controller
             'data'      => $data
         ]);
     }
-    
+
     public function add(Request $request)
     {
         $this->validate($request, [
-            'position_name'  => 'required|string|unique:positions',
+            'position_name'     => 'required|string',
+            'division_id'       => 'required|string'
         ]);
 
-        $position                        = new Positions;
-        $position->position_name      = $request->position_name;
+        $position                   = new Positions;
+        $position->position_name    = $request->position_name;
+        $position->division_id      = $request->division_id;
         $position->save();
 
         if($position)
@@ -52,12 +54,13 @@ class PositionsController extends Controller
     public function update($id, Request $request)
     {
         $position    = Positions::where('id', $id)->first();
-        
+
         if($position)
         {
-            $position->position_name  = $request->position_name    ?   $request->position_name  : $position->position_name;
+            $position->position_name    = $request->position_name   ?   $request->position_name : $position->position_name;
+            $position->division_id      = $request->division_id     ?   $request->division_id   : $position->division_id;
             $position->save();
-            
+
             return response()->json([
                 'status'    => true,
                 'massage'   => 'Update Position Success!',

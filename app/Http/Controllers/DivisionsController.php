@@ -21,15 +21,17 @@ class DivisionsController extends Controller
             'data'      => $data
         ]);
     }
-    
+
     public function add(Request $request)
     {
         $this->validate($request, [
-            'division_name'  => 'required|string|unique:divisions',
+            'division_name'     => 'required|string',
+            'departement_id'    => 'required|string',
         ]);
 
-        $division                        = new Divisions;
-        $division->division_name      = $request->division_name;
+        $division                   = new Divisions;
+        $division->division_name    = $request->division_name;
+        $division->departement_id   = $request->departement_id;
         $division->save();
 
         if($division)
@@ -52,12 +54,12 @@ class DivisionsController extends Controller
     public function update($id, Request $request)
     {
         $division    = Divisions::where('id', $id)->first();
-        
         if($division)
         {
-            $division->division_name  = $request->division_name    ?   $request->division_name  : $division->division_name;
+            $division->division_name    = $request->division_name   ?   $request->division_name     :   $division->division_name;
+            $division->departement_id   = $request->departement_id  ?   $request->departement_id    :   $division->departement_id;
             $division->save();
-            
+
             return response()->json([
                 'status'    => true,
                 'massage'   => 'Update Division Success!',
