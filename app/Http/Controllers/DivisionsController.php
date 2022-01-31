@@ -10,6 +10,7 @@ class DivisionsController extends Controller
 {
     public function __construct()
     {
+        //CORES
         $this->middleware('cors');
         $this->middleware('auth');
     }
