@@ -52,4 +52,10 @@ $router->group(['prefix' => 'v1/masterdata'], function () use ($router) {
     $router->get('blood-types', 'MdBloodTypesController@get');
     $router->put('blood-types/{id}', 'MdBloodTypesController@update');
     $router->delete('blood-types/{id}', 'MdBloodTypesController@delete');
+
+    // Education
+    $router->post('education', 'MdEducationController@add');
+    $router->get('education', 'MdEducationController@get');
+    $router->put('education/{id}', 'MdEducationController@update');
+    $router->delete('education/{id}', 'MdEducationController@delete');
 });
