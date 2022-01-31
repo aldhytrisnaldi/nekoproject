@@ -58,4 +58,10 @@ $router->group(['prefix' => 'v1/masterdata'], function () use ($router) {
     $router->get('education', 'MdEducationController@get');
     $router->put('education/{id}', 'MdEducationController@update');
     $router->delete('education/{id}', 'MdEducationController@delete');
+
+     // Employee Status
+     $router->post('employee-status', 'MdEmployeeStatusesController@add');
+     $router->get('employee-status', 'MdEmployeeStatusesController@get');
+     $router->put('employee-status/{id}', 'MdEmployeeStatusesController@update');
+     $router->delete('employee-status/{id}', 'MdEmployeeStatusesController@delete');
 });
