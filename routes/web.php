@@ -64,4 +64,10 @@ $router->group(['prefix' => 'v1/masterdata'], function () use ($router) {
      $router->get('employee-status', 'MdEmployeeStatusesController@get');
      $router->put('employee-status/{id}', 'MdEmployeeStatusesController@update');
      $router->delete('employee-status/{id}', 'MdEmployeeStatusesController@delete');
+
+     // Gender
+     $router->post('gender', 'MdGendersController@add');
+     $router->get('gender', 'MdGendersController@get');
+     $router->put('gender/{id}', 'MdGendersController@update');
+     $router->delete('gender/{id}', 'MdGendersController@delete');
 });
