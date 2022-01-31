@@ -35,7 +35,7 @@ class UserController extends Controller
         {
             return response()->json([
                 'status'    => false,
-                'message'   => 'user not found!'
+                'message'   => 'User not found!'
             ], 404);
         }
     }

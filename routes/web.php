@@ -9,6 +9,9 @@ $router->group(['prefix' => 'auth'], function () use ($router) {
     $router->post('register', 'AuthController@register');
     $router->post('login', 'AuthController@login');
     $router->get('logout', 'AuthController@logout');
+});
+
+$router->group(['prefix' => 'users'], function () use ($router) {
     $router->get('user', 'UserController@getAll');
     $router->get('user/{id}', 'UserController@getById');
 });

@@ -20,16 +20,19 @@ class AuthController extends Controller
         $this->validate($request, [
             'name'      => 'required|string',
             'email'     => 'required|email|unique:users',
-            'password'  => 'required|min:10|max:20',
+            'password'  => 'required|min:8|max:30',
+            'status'    => 'integer'
         ]);
 
         $name       = $request->input('name');
         $email      = $request->input('email');
+        $status     = $request->input('status');
         $password   = Hash::make($request->input('password'));
         $register   = User::create([
             'name'      => $name,
             'email'     => $email,
-            'password'  => $password
+            'password'  => $password,
+            'status'    => $status
         ]);
 
         if($register)
