@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Divisions;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class DivisionsController extends Controller
 {
@@ -25,13 +26,16 @@ class DivisionsController extends Controller
     public function add(Request $request)
     {
         $this->validate($request, [
-            'division_name'     => 'required|string',
+            'division_name'     => 'required|string|unique:divisions',
             'departement_id'    => 'required|string',
+            'status'            => 'required|integer'
         ]);
 
         $division                   = new Divisions;
         $division->division_name    = $request->division_name;
         $division->departement_id   = $request->departement_id;
+        $division->status           = $request->status  ?   $request->status  : 0;
+        $division->created_by       = Auth::user()->name;
         $division->save();
 
         if($division)
@@ -53,11 +57,20 @@ class DivisionsController extends Controller
 
     public function update($id, Request $request)
     {
+        $this->validate($request, [
+            'division_name'     => 'required|string',
+            'departement_id'    => 'required|string',
+            'status'            => 'required|integer'
+        ]);
+
         $division    = Divisions::where('id', $id)->first();
+
         if($division)
         {
             $division->division_name    = $request->division_name   ?   $request->division_name     :   $division->division_name;
             $division->departement_id   = $request->departement_id  ?   $request->departement_id    :   $division->departement_id;
+            $division->status           = $request->status          ?   $request->status            :   0;
+            $division->updated_by       = Auth::user()->name;
             $division->save();
 
             return response()->json([
