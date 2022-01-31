@@ -4,13 +4,14 @@ $router->get('/', function () use ($router) {
     return $router->app->version();
 });
 
-// AUTH
+// Authentication
 $router->group(['prefix' => 'auth'], function () use ($router) {
     $router->post('register', 'AuthController@register');
     $router->post('login', 'AuthController@login');
     $router->get('logout', 'AuthController@logout');
 });
 
+//  Users
 $router->group(['prefix' => 'users'], function () use ($router) {
     $router->get('user', 'UserController@getAll');
     $router->get('user/{id}', 'UserController@getById');
@@ -23,8 +24,8 @@ $router->get('employee/{id}', 'EmployeesController@getById');
 $router->put('employee/{id}', 'EmployeesController@update');
 $router->delete('employee/{id}', 'EmployeesController@delete');
 
+// Organization
 $router->group(['prefix' => 'v1/organization'], function() use ($router) {
-
     // Departement
     $router->post('departement', 'DepartementsController@add');
     $router->get('departement', 'DepartementsController@get');
@@ -42,4 +43,13 @@ $router->group(['prefix' => 'v1/organization'], function() use ($router) {
     $router->get('position', 'PositionsController@get');
     $router->put('position/{id}', 'PositionsController@update');
     $router->delete('position/{id}', 'PositionsController@delete');
+});
+
+// Master Data
+$router->group(['prefix' => 'v1/masterdata'], function () use ($router) {
+    // Blood Type
+    $router->post('blood-types', 'MdBloodTypesController@add');
+    $router->get('blood-types', 'MdBloodTypesController@get');
+    $router->put('blood-types/{id}', 'MdBloodTypesController@update');
+    $router->delete('blood-types/{id}', 'MdBloodTypesController@delete');
 });
