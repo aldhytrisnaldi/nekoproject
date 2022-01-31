@@ -90,10 +90,10 @@ class DepartementsController extends Controller
 
         if($departement)
         {
-            $departement->delete();
+            // $departement->delete();
             return response()->json([
                 'status'    => true,
-                'massage'   => 'Delete Departement ' .$id. ' Success'
+                'massage'   => 'Script delete not activate'
             ], 200);
         }
         else

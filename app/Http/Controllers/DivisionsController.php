@@ -94,10 +94,10 @@ class DivisionsController extends Controller
 
         if($division)
         {
-            $division->delete();
+            // $division->delete();
             return response()->json([
                 'status'    => true,
-                'massage'   => 'Delete Division ' .$id. ' Success'
+                'massage'   => 'Script delete not activate'
             ], 200);
         }
         else

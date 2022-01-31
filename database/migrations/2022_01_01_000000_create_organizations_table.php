@@ -19,22 +19,24 @@ class CreateOrganizationsTable extends Migration
 
         Schema::create('divisions', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedInteger('departement_id');
+            $table->unsignedBigInteger('departement_id');
             $table->string('division_name');
             $table->unsignedSmallInteger('status');
             $table->string('created_by')->nullable();
             $table->string('updated_by')->nullable();
             $table->timestamps();
+            $table->foreign('departement_id')->references('id')->on('departements');
         });
 
         Schema::create('positions', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedInteger('division_id');
+            $table->unsignedBigInteger('division_id');
             $table->string('position_name');
             $table->unsignedSmallInteger('status');
             $table->string('created_by')->nullable();
             $table->string('updated_by')->nullable();
             $table->timestamps();
+            $table->foreign('division_id')->references('id')->on('divisions');
         });
     }
 

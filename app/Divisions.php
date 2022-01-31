@@ -8,7 +8,10 @@ class Divisions extends Model
 {
     protected $fillable = [
         'division_name',
-        'departement_id'
+        'departement_id',
+        'status',
+        'created_by',
+        'updated_by'
     ];
 
     protected $hidden = [

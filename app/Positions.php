@@ -8,7 +8,10 @@ class Positions extends Model
 {
     protected $fillable = [
         'position_name',
-        'division_id'
+        'division_id',
+        'status',
+        'created_by',
+        'updated_by'
     ];
 
     protected $hidden = [
