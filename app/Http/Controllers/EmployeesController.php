@@ -15,7 +15,7 @@ class EmployeesController extends Controller
 
     public function get()
     {
-        $data   = Employees::all();
+        $data   = Employees::all()->sortByDesc('id');
         return response()->json([
             'status'    => true,
             'data'      => $data
@@ -40,7 +40,7 @@ class EmployeesController extends Controller
             ], 404);
         }
     }
-    
+
     public function add(Request $request)
     {
         $this->validate($request, [
@@ -112,7 +112,7 @@ class EmployeesController extends Controller
     public function update($id, Request $request)
     {
         $employees    = Employees::where('id', $id)->first();
-        
+
         if($employees)
         {
             $employees->name                      = $request->name                    ? $request->name                    : $employees->name;
@@ -137,7 +137,7 @@ class EmployeesController extends Controller
             $employees->division_id               = $request->division_id             ? $request->division_id             : $employees->division_id;
             $employees->position_id               = $request->position_id             ? $request->position_id             : $employees->position_id;
             $employees->save();
-            
+
             return response()->json([
                 'status'    => true,
                 'massage'   => 'Update Employee Success!',

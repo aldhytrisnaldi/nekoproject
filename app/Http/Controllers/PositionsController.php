@@ -15,7 +15,7 @@ class PositionsController extends Controller
 
     public function get()
     {
-        $data   = Positions::all();
+        $data   = Positions::all()->sortByDesc('id');
         return response()->json([
             'status'    => true,
             'data'      => $data

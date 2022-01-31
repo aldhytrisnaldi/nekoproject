@@ -9,22 +9,26 @@ class PositionSeeder extends Seeder
     {
         Positions::create([
             'position_name'     => 'FRONTEND DEV',
-            'division_id'       => '1'
+            'division_id'       => '1',
+            'status'            => '1'
         ]);
 
         Positions::create([
             'position_name'     => 'BACKEND DEV',
-            'division_id'       => '1'
+            'division_id'       => '1',
+            'status'            => '1'
         ]);
 
         Positions::create([
             'position_name'     => 'DEV OPS',
-            'division_id'       => '4'
+            'division_id'       => '4',
+            'status'            => '1'
         ]);
 
         Positions::create([
             'position_name'     => 'IT STAFF',
-            'division_id'       => '3'
+            'division_id'       => '3',
+            'status'            => '1'
         ]);
     }
 }

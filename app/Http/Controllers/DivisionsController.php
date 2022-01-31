@@ -15,7 +15,7 @@ class DivisionsController extends Controller
 
     public function get()
     {
-        $data   = Divisions::all();
+        $data   = Divisions::all()->sortByDesc('id');
         return response()->json([
             'status'    => true,
             'data'      => $data

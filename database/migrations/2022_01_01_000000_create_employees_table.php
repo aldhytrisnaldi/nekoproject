@@ -28,9 +28,9 @@ class CreateEmployeesTable extends Migration
             $table->longtext('address');
             $table->string('phone')->unique;
             $table->string('email')->unique;
-            $table->unsignedInteger('id_departement');
-            $table->unsignedInteger('id_division');
-            $table->unsignedInteger('id_position');
+            $table->unsignedBigInteger('id_departement')->references('id')->on('departements');
+            $table->unsignedBigInteger('id_division');
+            $table->unsignedBigInteger('id_position');
             $table->timestamps();
         });
     }

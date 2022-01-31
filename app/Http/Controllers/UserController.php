@@ -17,7 +17,7 @@ class UserController extends Controller
     {
          return response()->json([
              'status'   => true,
-             'users'    =>  User::all()
+             'users'    =>  User::all()->sortByDesc('id')
         ], 200);
     }
 

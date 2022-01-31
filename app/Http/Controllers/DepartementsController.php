@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Departements;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class DepartementsController extends Controller
 {
@@ -11,12 +12,11 @@ class DepartementsController extends Controller
     {
         $this->middleware('cors');
         $this->middleware('auth');
-        $this->middleware('role:admin');
     }
 
     public function get()
     {
-        $data   = Departements::all();
+        $data   = Departements::all()->sortByDesc('id');
         return response()->json([
             'status'    => true,
             'data'      => $data
@@ -27,10 +27,13 @@ class DepartementsController extends Controller
     {
         $this->validate($request, [
             'departement_name'  => 'required|string|unique:departements',
+            'status'            => 'required|integer'
         ]);
 
         $departement                        = new Departements;
         $departement->departement_name      = $request->departement_name;
+        $departement->status                = $request->status  ?   $request->status  : 0;
+        $departement->created_by            = Auth::user()->name;
         $departement->save();
 
         if($departement)
@@ -52,11 +55,18 @@ class DepartementsController extends Controller
 
     public function update($id, Request $request)
     {
+        $this->validate($request, [
+            'departement_name'  => 'required|string',
+            'status'            => 'required|integer'
+        ]);
+
         $departement    = Departements::where('id', $id)->first();
 
         if($departement)
         {
             $departement->departement_name  = $request->departement_name    ?   $request->departement_name  : $departement->departement_name;
+            $departement->status            = $request->status              ?   $request->status            : 0;
+            $departement->updated_by        = Auth::user()->name;
             $departement->save();
 
             return response()->json([
