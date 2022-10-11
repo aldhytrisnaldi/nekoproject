@@ -9,9 +9,16 @@ class UserSeeder extends Seeder
     public function run()
     {
         $admin = User::create([
+            'name'      => 'root',
+            'email'     => 'root@smarthris.com',
+            'password'  => Hash::make('0'),
+            'status'    => '1'
+        ]);
+
+        $admin = User::create([
             'name'      => 'Superadmin',
             'email'     => 'superadmin@smarthris.com',
-            'password'  => Hash::make('00000000'),
+            'password'  => Hash::make('0'),
             'status'    => '1'
         ]);
 
@@ -20,7 +27,7 @@ class UserSeeder extends Seeder
         $admin = User::create([
             'name'      => 'Administrator',
             'email'     => 'admin@smarthris.com',
-            'password'  => Hash::make('00000000'),
+            'password'  => Hash::make('0'),
             'status'    => '1'
         ]);
 
@@ -29,7 +36,7 @@ class UserSeeder extends Seeder
         $admin = User::create([
             'name'      => 'User',
             'email'     => 'user@smarthris.com',
-            'password'  => Hash::make('00000000'),
+            'password'  => Hash::make('0'),
             'status'    => '1'
         ]);
 

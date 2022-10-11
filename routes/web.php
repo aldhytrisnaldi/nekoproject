@@ -6,14 +6,14 @@ $router->get('/', function () use ($router) {
 
 // Authentication
 $router->group(['prefix' => 'auth'], function () use ($router) {
-    $router->post('register', 'AuthController@register');
     $router->post('login', 'AuthController@login');
     $router->get('logout', 'AuthController@logout');
 });
 
 //  Users
-$router->group(['prefix' => 'users'], function () use ($router) {
-    $router->get('user', 'UserController@getAll');
+$router->group(['prefix' => 'user'], function () use ($router) {
+    $router->post('register', 'UserController@register');
+    $router->get('users', 'UserController@getAll');
     $router->get('user/{id}', 'UserController@getById');
 });
 
