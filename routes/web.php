@@ -24,50 +24,17 @@ $router->get('employee/{id}', 'EmployeesController@getById');
 $router->put('employee/{id}', 'EmployeesController@update');
 $router->delete('employee/{id}', 'EmployeesController@delete');
 
-// Organization
-$router->group(['prefix' => 'v1/organization'], function() use ($router) {
-    // Departement
-    $router->post('departement', 'DepartementsController@add');
-    $router->get('departement', 'DepartementsController@get');
-    $router->put('departement/{id}', 'DepartementsController@update');
-    $router->delete('departement/{id}', 'DepartementsController@delete');
-
-    // Division
-    $router->post('division', 'DivisionsController@add');
-    $router->get('division', 'DivisionsController@get');
-    $router->put('division/{id}', 'DivisionsController@update');
-    $router->delete('division/{id}', 'DivisionsController@delete');
-
-    // Position
-    $router->post('position', 'PositionsController@add');
-    $router->get('position', 'PositionsController@get');
-    $router->put('position/{id}', 'PositionsController@update');
-    $router->delete('position/{id}', 'PositionsController@delete');
-});
-
 // Master Data
 $router->group(['prefix' => 'v1/masterdata'], function () use ($router) {
-    // Blood Type
-    $router->post('blood-types', 'MdBloodTypesController@add');
-    $router->get('blood-types', 'MdBloodTypesController@get');
-    $router->put('blood-types/{id}', 'MdBloodTypesController@update');
-    $router->delete('blood-types/{id}', 'MdBloodTypesController@delete');
+    // Menu Type
+    $router->get('menu-type', 'Masterdata\MenuType@get');
+    $router->post('menu-type', 'Masterdata\MenuType@add');
+    $router->put('menu-type/{id}', 'Masterdata\MenuType@update');
+    $router->delete('menu-type/{id}', 'Masterdata\MenuType@delete');
 
-    // Education
-    $router->post('education', 'MdEducationController@add');
-    $router->get('education', 'MdEducationController@get');
-    $router->put('education/{id}', 'MdEducationController@update');
-    $router->delete('education/{id}', 'MdEducationController@delete');
-
-     // Employee Status
-     $router->post('employee-status', 'MdEmployeeStatusesController@add');
-     $router->get('employee-status', 'MdEmployeeStatusesController@get');
-     $router->put('employee-status/{id}', 'MdEmployeeStatusesController@update');
-     $router->delete('employee-status/{id}', 'MdEmployeeStatusesController@delete');
-
-     // Gender
-     $router->post('gender', 'MdGendersController@add');
-     $router->get('gender', 'MdGendersController@get');
-     $router->put('gender/{id}', 'MdGendersController@update');
-     $router->delete('gender/{id}', 'MdGendersController@delete');
+    // Menu
+    $router->get('menu', 'Masterdata\Menu@get');
+    $router->post('menu', 'Masterdata\Menu@add');
+    $router->put('menu/{id}', 'Masterdata\Menu@update');
+    $router->delete('menu/{id}', 'Masterdata\Menu@delete');
 });
